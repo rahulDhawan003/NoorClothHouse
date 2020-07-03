@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // checkPermission();
+        checkPermission();
 
 
         ProgressDialog pd;
     }
 
 
-  /*  public void checkPermission() {
+    public void checkPermission() {
 
         ArrayList<String> permissionAvailable = new ArrayList<>();
         ArrayList<String> permissionNeeded = new ArrayList<>();
@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
                 permissionNeeded.add(p);
 
         }
-
-        PermissionClass.getPermissions(permissionNeeded, getApplicationContext(), this);
-    }*/
+        if(permissionNeeded.size()>0)
+            PermissionClass.getPermissions(permissionNeeded, getApplicationContext(), this);
+    }
 
     public void add_stock(View view) {
 

@@ -1,5 +1,6 @@
 package com.rbr.noorclothhouse.helper;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 
@@ -17,8 +18,10 @@ public class PermissionClass extends AppCompatActivity {
         permission.toArray(permissionList);
 
         ActivityCompat.requestPermissions(a, permissionList, 1111);
-
+        return;
 
     }
+
+
 
 }
