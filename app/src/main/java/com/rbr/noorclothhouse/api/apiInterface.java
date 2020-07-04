@@ -11,4 +11,6 @@ public interface apiInterface {
     @POST("stock_add.php")
     Call<ResponseClass> addStockServer(@Field("image") String image, @Field("scode") String scode, @Field("sname") String name,
                                 @Field("sprice") String price, @Field("squantity") String quantity);
+
+
 }
