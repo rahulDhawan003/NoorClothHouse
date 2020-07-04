@@ -1,8 +1,13 @@
 package com.rbr.noorclothhouse.api;
 
+import com.rbr.noorclothhouse.helper.Stock;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface apiInterface {
@@ -13,4 +18,6 @@ public interface apiInterface {
                                 @Field("sprice") String price, @Field("squantity") String quantity);
 
 
+    @GET("get_stock.php")
+    Call<List<Stock>> getStockServer();
 }

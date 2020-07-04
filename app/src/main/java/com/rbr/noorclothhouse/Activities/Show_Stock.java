@@ -4,19 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.rbr.noorclothhouse.R;
+import com.rbr.noorclothhouse.api.ApiClient;
+import com.rbr.noorclothhouse.api.apiInterface;
 import com.rbr.noorclothhouse.helper.Recycler_Adapter;
 import com.rbr.noorclothhouse.helper.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Show_Stock extends AppCompatActivity {
 
     RecyclerView rv;
     List<Stock> stocklist;
+    List<Stock> stk;
+
+    public static com.rbr.noorclothhouse.api.apiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,26 +37,48 @@ public class Show_Stock extends AppCompatActivity {
         //FindviewbyId
         findview();
 
-        //Creating list of stocks
+
         stocklist = new ArrayList<>();
-        stocklist.add(new Stock("1","rakesh","https://www.google.com/search?q=images&rlz=1C1CHBF_enIN863IN863&sxsrf=ALeKk03MNzHOfqIigAMFt-gKBrwcY1f_yw:1593856851074&tbm=isch&source=iu&ictx=1&fir=PDxUM2uh-Nz6cM%252CLlgDpz1LoiuznM%252C_&vet=1&usg=AI4_-kQCcjzkqo7IesobXHjm6gM8REv3pA&sa=X&ved=2ahUKEwiZgLm7q7PqAhUp63MBHdFfCJYQ9QEwAHoECAgQMQ#imgrc=PDxUM2uh-Nz6cM",
-                "200","4"));
+        stk = new ArrayList<>();
 
-        stocklist.add(new Stock("2","Baskar","P",
-                "500","4"));
 
-        rv.setHasFixedSize(true);
-        LinearLayoutManager layout=new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        Call<List<Stock>> call = apiInterface.getStockServer();
 
-        //creating recyclerview adapter
-        Recycler_Adapter adapter = new Recycler_Adapter(getApplicationContext(), stocklist);
 
-        //setting adapter to recyclerview
-        rv.setAdapter(adapter);
+        call.enqueue(new Callback<List<Stock>>() {
+            @Override
+            public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
+                stocklist = response.body();
+
+
+
+                for(int i =0 ; i<stocklist.size();i++){
+                    stk.add(stocklist.get(i));
+                }
+
+                rv.setHasFixedSize(true);
+                LinearLayoutManager layout=new LinearLayoutManager(getApplicationContext());
+                rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                Recycler_Adapter adapter = new Recycler_Adapter(getApplicationContext(), stk);
+                rv.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Stock>> call, Throwable t) {
+                Toast.makeText(Show_Stock.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
     }
 
     private void findview() {
+        apiInterface = ApiClient.getApiClient().create(com.rbr.noorclothhouse.api.apiInterface.class);
         rv=findViewById(R.id.show_stock_recycler);
     }
 }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="12dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
-        app:cardElevation="15dp"
-        app:cardBackgroundColor="@color/cardbackground">
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/newcolorPrimary">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,19 +21,20 @@
 
             <ImageView
                 android:id="@+id/card_stock_img"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/newcolorPrimaryDark"/>
 
             <TextView
                 android:id="@+id/card_short_no_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/card_stock_img"
+                android:textColor="@color/newcolorAccent"
                 android:text="Short_no"
-                android:textSize="30sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/card_stock_name_tv"
@@ -42,7 +43,8 @@
                 android:layout_below="@id/card_short_no_tv"
                 android:layout_toRightOf="@id/card_stock_img"
                 android:text="Name"
-                android:textSize="30sp" />
+                android:textColor="@color/newcolorAccent"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/card_stock_quantity_tv"
@@ -51,7 +53,8 @@
                 android:layout_below="@id/card_stock_name_tv"
                 android:layout_toRightOf="@id/card_stock_img"
                 android:text="Quantity"
-                android:textSize="30sp" />
+                android:textColor="@color/newcolorAccent"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/card_stock_price_tv"
@@ -60,7 +63,8 @@
                 android:layout_below="@id/card_stock_quantity_tv"
                 android:layout_toRightOf="@id/card_stock_img"
                 android:text="Name"
-                android:textSize="30sp" />
+                android:textColor="@color/newcolorAccent"
+                android:textSize="15sp" />
 
         </RelativeLayout>
 
