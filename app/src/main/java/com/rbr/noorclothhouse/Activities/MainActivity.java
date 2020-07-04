@@ -56,5 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_stock(View view) {
+        startActivity(new Intent(getApplicationContext(),Show_Stock.class));
     }
 }
