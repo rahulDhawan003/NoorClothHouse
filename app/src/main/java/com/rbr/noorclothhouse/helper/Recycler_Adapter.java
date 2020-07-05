@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.rbr.noorclothhouse.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.StockViewHolder> {
@@ -25,9 +27,12 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
     //we are storing all the products in a list
     private List<Stock> stocklist;
 
-    public Recycler_Adapter(Context applicationContext, List<Stock> list){
-    mCtx=applicationContext;
-    stocklist=list;
+    public Recycler_Adapter(Context applicationContext, List<Stock> list) {
+
+        stocklist = new ArrayList<>();
+        mCtx = applicationContext;
+        stocklist = list;
+
     }
 
     @NonNull
@@ -36,7 +41,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
 
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.card_view, null);
+        View view = inflater.inflate(R.layout.card_view, parent,false);
         return new StockViewHolder(view);
 
     }
@@ -46,12 +51,13 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
 
         //getting the product of the specified position
         Stock product = stocklist.get(position);
+        holder.setIsRecyclable(false);
 
         //binding the data with the viewholder views from here
-        holder.short_no.setText(product.getShort_code());
-        holder.price.setText(product.getStock_price());
-        holder.quantity.setText(product.getStock_quantity());
-        holder.name.setText(product.getStock_name());
+        holder.short_no.setText("Short Code: "+product.getShort_code());
+        holder.price.setText("Price Per Meter: "+product.getStock_price());
+        holder.quantity.setText("Quantity Available: "+product.getStock_quantity());
+        holder.name.setText("Name: "+product.getStock_name());
 
         //Setting image with handling error of invalid url
         RequestOptions options = new RequestOptions()
@@ -59,7 +65,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
                 .placeholder(R.mipmap.ic_launcher_round)
                 .error(R.mipmap.ic_launcher_round);
 
-        Glide.with(mCtx).load(product.getStock_img_url_()).apply(options).into(holder.stock_img);
+        Glide.with(mCtx).load("http://nch.mfsoft.in/admin_api/stk_img/" + product.getStock_img_url_()).apply(options).into(holder.stock_img);
 
     }
 
@@ -70,17 +76,18 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
 
     public class StockViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name,quantity,price,short_no;
+        TextView name, quantity, price, short_no;
         ImageView stock_img;
+
         public StockViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //Take view from here
-            name=itemView.findViewById(R.id.card_stock_name_tv);
-            quantity=itemView.findViewById(R.id.card_stock_quantity_tv);
-            price=itemView.findViewById(R.id.card_stock_price_tv);
-            short_no=itemView.findViewById(R.id.card_short_no_tv);
-            stock_img=itemView.findViewById(R.id.card_stock_img);
+            name = itemView.findViewById(R.id.card_stock_name_tv);
+            quantity = itemView.findViewById(R.id.card_stock_quantity_tv);
+            price = itemView.findViewById(R.id.card_stock_price_tv);
+            short_no = itemView.findViewById(R.id.card_short_no_tv);
+            stock_img = itemView.findViewById(R.id.card_stock_img);
         }
     }
 }
