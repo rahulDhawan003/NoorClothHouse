@@ -53,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
     public void add_stock(View view) {
 
         startActivity(new Intent(getApplicationContext(), Add_Stock.class));
+
     }
 
     public void show_stock(View view) {
         startActivity(new Intent(getApplicationContext(),Show_Stock.class));
+
     }
 }

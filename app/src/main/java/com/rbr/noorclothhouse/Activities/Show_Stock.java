@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class Show_Stock extends AppCompatActivity {
     List<Stock> stocklist;
     List<Stock> stk;
 
+
     public static com.rbr.noorclothhouse.api.apiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class Show_Stock extends AppCompatActivity {
         call.enqueue(new Callback<List<Stock>>() {
             @Override
             public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
+
+                if(response.body()!=null){
                 stocklist = response.body();
 
 
@@ -63,7 +67,7 @@ public class Show_Stock extends AppCompatActivity {
                 Recycler_Adapter adapter = new Recycler_Adapter(getApplicationContext(), stk);
                 rv.setAdapter(adapter);
 
-            }
+            }}
 
             @Override
             public void onFailure(Call<List<Stock>> call, Throwable t) {
