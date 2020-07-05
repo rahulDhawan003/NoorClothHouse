@@ -170,7 +170,7 @@ public class DetailStock extends AppCompatActivity {
                 if(response.body().getResponse().equals("ok")){
                     pd.dismiss();
                     startActivity(new Intent(getApplicationContext(),Show_Stock.class));
-                    finish();
+                    finishAffinity();
                 }else
                 {
                     pd.dismiss();
