@@ -16,8 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.DetailStock"></activity>
         <activity android:name=".Activities.Add_Stock" />
-        <activity android:name=".Activities.Show_Stock"></activity>
+        <activity android:name=".Activities.Show_Stock" />
         <activity
             android:name=".Activities.Splash_Screen"
             android:theme="@style/splash_screen">

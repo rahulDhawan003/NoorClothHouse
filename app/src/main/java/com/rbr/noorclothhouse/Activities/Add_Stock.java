@@ -81,6 +81,7 @@ public class Add_Stock extends AppCompatActivity {
         String image = imgtoString();
 
         if (dataValidater(scode, sname, sprice, squantity, image) == 0) {
+            pd.dismiss();
             Toast.makeText(this, "Please fill all fields and attach an image", Toast.LENGTH_SHORT).show();
             return;
         }
