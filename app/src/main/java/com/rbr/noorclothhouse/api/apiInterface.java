@@ -20,4 +20,15 @@ public interface apiInterface {
 
     @GET("get_stock.php")
     Call<List<Stock>> getStockServer();
+
+
+    @FormUrlEncoded
+    @POST("edit_stock.php")
+    Call<ResponseClass> editStockServer( @Field("scode") String scode, @Field("sprice") String price, @Field("squantity") String quantity);
+
+    @FormUrlEncoded
+    @POST("delete_stock.php")
+    Call<ResponseClass> deleteStockServer( @Field("scode") String scode);
+
+
 }
