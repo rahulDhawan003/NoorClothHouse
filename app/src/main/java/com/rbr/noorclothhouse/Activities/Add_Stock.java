@@ -98,12 +98,12 @@ public class Add_Stock extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(Add_Stock.this, "Stock successfully added", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
+                    finishAffinity();
                 }else if(response.body().getResponse().equals("error")){
                     pd.dismiss();
                     Toast.makeText(Add_Stock.this, "Error Adding stock", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
+                    finishAffinity();
                 }
             }
 
@@ -113,7 +113,7 @@ public class Add_Stock extends AppCompatActivity {
                 pd.dismiss();
                 Toast.makeText(Add_Stock.this, "Error Adding stock", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                finish();
+                finishAffinity();
             }
         });
 

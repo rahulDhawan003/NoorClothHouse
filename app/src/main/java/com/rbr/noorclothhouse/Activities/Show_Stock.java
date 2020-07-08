@@ -85,4 +85,10 @@ public class Show_Stock extends AppCompatActivity {
         apiInterface = ApiClient.getApiClient().create(com.rbr.noorclothhouse.api.apiInterface.class);
         rv=findViewById(R.id.show_stock_recycler);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
+    }
 }

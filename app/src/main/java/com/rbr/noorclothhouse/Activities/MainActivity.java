@@ -54,10 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(new Intent(getApplicationContext(), Add_Stock.class));
 
+
     }
 
     public void show_stock(View view) {
         startActivity(new Intent(getApplicationContext(),Show_Stock.class));
+        finish();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishActivity(0);
     }
 }

@@ -91,6 +91,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Stoc
 
         Glide.with(mCtx).load("http://nch.mfsoft.in/admin_api/stk_img/" + product.getStock_img_url_()).apply(options).into(holder.stock_img);
 
+
     }
 
     @Override
